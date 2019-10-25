@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>01Canvas入门</title>
+</head>
+
+<body>
+  <canvas id="demo" width="600" height='600'>
+    ie9以上才支持Canvas
+    你的浏览器不支持canvas，请升级浏览器
+    <!-- flash -->
+  </canvas>
+
+  <script>
+    //第一步：拿到canvas标签
+    var canvas = document.getElementById('demo')
+
+    // 第二步：拿到canvas的上下文
+    var ctx = canvas.getContext('2d') //'webgl'
+
+    //第三步：开始绘制
+    ctx.moveTo(100, 100)
+    ctx.lineTo(200, 100)
+    ctx.lineTo(100, 200)
+
+    ctx.stroke()
+  </script>
+</body>
+
+</html>
