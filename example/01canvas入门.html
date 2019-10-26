@@ -8,7 +8,16 @@
   <title>01Canvas入门</title>
 </head>
 
+<style>
+  #demo {
+    /* width: 1200px;
+    height: 1200px; */
+  }
+</style>
+
 <body>
+  <!--设置canvas标签的宽高是通过canvas标签的属性进行设置。
+  不要用css去设置-->
   <canvas id="demo" width="600" height='600'>
     ie9以上才支持Canvas
     你的浏览器不支持canvas，请升级浏览器
@@ -18,16 +27,31 @@
   <script>
     //第一步：拿到canvas标签
     var canvas = document.getElementById('demo')
+    canvas.style.border = '1px solid red'
+    canvas.width = 600
+    canvas.height = 600
+    // canvas.style.height = 1200 //千万不要这么玩
 
     // 第二步：拿到canvas的上下文
     var ctx = canvas.getContext('2d') //'webgl'
 
     //第三步：开始绘制
-    ctx.moveTo(100, 100)
-    ctx.lineTo(200, 100)
-    ctx.lineTo(100, 200)
+    //moveTo()//第一个参数是x点坐标，第二个参数是y点坐标
+    ctx.moveTo(100, 100) //把画笔移动到 100，100点
+    ctx.lineTo(200, 100) //从画笔的位置 画一条之间到200，100点
+    ctx.lineTo(100, 200) //从当前位置，再画一条直线到100，200点
 
-    ctx.stroke()
+    // ctx.lineTo(100, 100)
+    ctx.closePath() //闭合路径
+
+    ctx.lineWidth = 4
+    //设置描边的样式
+    ctx.strokeStyle = 'red' //'rgba(233,233,233,.8)' //跟上颜色，rgb(),rgba() red blue #888
+    ctx.stroke() //绘制 //stroke：描边的意思。
+
+    ctx.fillStyle = 'green'
+    //进行填充的工作
+    ctx.fill()
   </script>
 </body>
 
