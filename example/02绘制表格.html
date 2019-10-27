@@ -19,10 +19,21 @@
 		// }
 		// a()
 
-		// (a)() //
-		// var c = (1 + 3) //’（）‘是分组的意思
-		// var b = (a) //b=a
-		// b() //a()
+		// var b = (1 + 3) //’（）‘是分组的意思，是括起来一个表达式的意思
+
+		// var b = (a) //把a的值强制返还给b
+
+		//var b = (function(){})//b=function(){}返回函数体
+		//b()//执行函数体 
+		//(function(){})() //1、前面（）代表强制返回function(){}的函数对象
+
+		// var b = function(){}
+		// var c = (b())
+		// (function(){}()) //2、最外层的（）代表强制返回function(){}()的函数对象，而其立即执行
+
+		//立即执行函数：上边的1和2写法
+		//不加（）时function会理解成函数声明，
+		//加（）时function会理解成表达式，即函数对象；再在后面加（）就会立即执行这个函数
 
 
 		(function () {
@@ -37,13 +48,14 @@
 			canvas.height = 600;
 			canvas.style.border = "1px solid #000";
 
+			//绘制表格
 			ctx.beginPath();
-
+			//第一步：绘制横线
 			for (var i = 0; i < rows; i++) {
-				ctx.moveTo(0, i * rectSize);
+				ctx.moveTo(0, i * rectSize); //如果不设置moveTo，当前画笔没有位置，此时ctx.lineTo(100,100)，则其实是绘制：(100,100)到(100,100)
 				ctx.lineTo(columns * rectSize, i * rectSize);
 			}
-
+			//
 			for (var i = 0; i < columns; i++) {
 				ctx.moveTo(i * rectSize, 0);
 				ctx.lineTo(i * rectSize, rows * rectSize);
