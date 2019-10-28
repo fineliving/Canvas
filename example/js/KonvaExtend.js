@@ -1,38 +1,38 @@
 // 场景
-function ItcastScence( options ) {
-    this.stage = options.stage;
-    this.init = options.init || ItcastScence.voidFn;
-    this.pre = options.pre || ItcastScence.voidFn;
-    this.post = options.post || ItcastScence.voidFn;
-    this.layers = options.layers || [new Konva.Layer()];
-    this.name = options.name || '';
-    this.init();
+function ItcastScence(options) {
+	this.stage = options.stage;
+	this.init = options.init || ItcastScence.voidFn;
+	this.pre = options.pre || ItcastScence.voidFn;
+	this.post = options.post || ItcastScence.voidFn;
+	this.layers = options.layers || [new Konva.Layer()];
+	this.name = options.name || '';
+	this.init();
 }
 
 ItcastScence.prototype = {
 	constructor: ItcastScence,
-	voidFn: function() {},
+	voidFn: function () {},
 	CurrentScence: null,
 	play: function () {
-         var _this = this,
-                doPre,
-                doPre = function doPre() {
-                    // stage.add(_this.layer);// 把当前层添加到舞台
-                    _this.layers.forEach(function( val ){
-                        _this.stage.add( val );
-                    });
-                    ItcastScence.currentScene = _this;
-                    _this.pre();
-                };
+		var _this = this,
+			doPre,
+			doPre = function doPre() {
+				// stage.add(_this.layer);// 把当前层添加到舞台
+				_this.layers.forEach(function (val) {
+					_this.stage.add(val);
+				});
+				ItcastScence.currentScene = _this;
+				_this.pre();
+			};
 
-        if (ItcastScence.currentScene) {
-            //执行上一个场景的出场动画
-            ItcastScence.currentScene.post(doPre);
-        } else {
-            //执行当前入场动画
-            doPre();
-        }
-    }// play
+		if (ItcastScence.currentScene) {
+			//执行上一个场景的出场动画
+			ItcastScence.currentScene.post(doPre);
+		} else {
+			//执行当前入场动画
+			doPre();
+		}
+	} // play
 };
 
 
@@ -61,19 +61,19 @@ function Histogram(option) {
 //柱状图的原型对象
 Histogram.prototype = {
 	constructor: Histogram,
-	init: function( option ) {
+	init: function (option) {
 		option.data = option.data || [];
 		//底线的宽度
 		option.blWidth = option.blWidth || 2;
 		option.blColor = option.blColor || 'lightgreen';
 		option.width = option.width || 200;
 		option.height = option.height || 200;
-		option.fontSize =  option.fontSize || 12;
+		option.fontSize = option.fontSize || 12;
 
 		//把最高的柱状图的高度换算成 柱状图要求的高度。
 		var maxValue = 0;
-		for(var i = 0; i < option.data.length; i++ ) {
-		 	maxValue = maxValue > option.data[i].value ? maxValue : option.data[i].value;
+		for (var i = 0; i < option.data.length; i++) {
+			maxValue = maxValue > option.data[i].value ? maxValue : option.data[i].value;
 		}
 		option.height = option.height / maxValue;
 
@@ -81,21 +81,21 @@ Histogram.prototype = {
 		var bottomLine = new Konva.Line({
 			strokeWidth: option.blWidth,
 			stroke: option.blColor,
-			points: [ 0, 0, option.width, 0 ],
+			points: [0, 0, option.width, 0],
 			lineCap: 'round',
-		    lineJoin: 'round'
+			lineJoin: 'round'
 		});
-		this.group.add( bottomLine );
+		this.group.add(bottomLine);
 
 		//rectWidth
 		var rectAllWidth = option.width / option.data.length;
-		for(var i = 0; i < option.data.length; i++ ) {
+		for (var i = 0; i < option.data.length; i++) {
 			var tempData = option.data[i];
 			//创建每个柱状图
 			var rect = new Konva.Rect({
-				x: rectAllWidth * (1/4 + i),
-				y: -1 * (option.height * tempData.value) - 1/2*option.blWidth,
-				width: 1/2 * rectAllWidth,
+				x: rectAllWidth * (1 / 4 + i),
+				y: -1 * (option.height * tempData.value) - 1 / 2 * option.blWidth,
+				width: 1 / 2 * rectAllWidth,
 				height: option.height * tempData.value,
 				fill: tempData.color,
 				shadowBlur: 5,
@@ -109,12 +109,12 @@ Histogram.prototype = {
 
 			//创建 柱状图百分比文本
 			var text = new Konva.Text({
-				x: rectAllWidth *  i,
-				y: -1 * (option.height * tempData.value) - 1/2*option.blWidth - option.fontSize -3,
+				x: rectAllWidth * i,
+				y: -1 * (option.height * tempData.value) - 1 / 2 * option.blWidth - option.fontSize - 3,
 				fontSize: option.fontSize,
 				fill: tempData.color,
 				fontFamily: '微软雅黑',
-				text: tempData.value * 100  + '%',
+				text: tempData.value * 100 + '%',
 				name: 'txt',
 				width: rectAllWidth,
 				align: 'center'
@@ -122,7 +122,7 @@ Histogram.prototype = {
 
 			//创建 柱状图名字文本
 			var nameText = new Konva.Text({
-				x: rectAllWidth * (1/2 + i),
+				x: rectAllWidth * (1 / 2 + i),
 				y: option.blWidth + 3,
 				fontSize: option.fontSize,
 				fill: tempData.color,
@@ -131,19 +131,19 @@ Histogram.prototype = {
 				rotation: 30
 			});
 
-			this.group.add( rect );
-			this.group.add( text );
-			this.group.add( nameText );
+			this.group.add(rect);
+			this.group.add(text);
+			this.group.add(nameText);
 		}
 
 	},
-	playAnimate: function() {
+	playAnimate: function () {
 		this.group.to({
 			duration: .1,
 			opacity: 1
 		});
 
-		this.group.find('.histogramRect').each(function( value, index ) {
+		this.group.find('.histogramRect').each(function (value, index) {
 			var oldY = value.y();
 			var oldHeight = value.height();
 			value.y(0);
@@ -159,7 +159,7 @@ Histogram.prototype = {
 
 
 
-		this.group.find(".txt").each(function(val){
+		this.group.find(".txt").each(function (val) {
 			var oldY = val.y();
 			val.y(0);
 			val.opacity(.1);
@@ -170,7 +170,7 @@ Histogram.prototype = {
 			});
 		});
 	},
-	addToGroupOrLayer: function( group ) {
+	addToGroupOrLayer: function (group) {
 		group.add(this.group);
 	}
 };
@@ -226,7 +226,7 @@ function ProgressBar(option) {
 
 ProgressBar.prototype = {
 	constructor: ProgressBar,
-	init: function( option ) {
+	init: function (option) {
 		var innerRect = new Konva.Rect({
 			x: 0,
 			y: 0,
@@ -234,9 +234,9 @@ ProgressBar.prototype = {
 			height: option.height,
 			fill: option.fillColor,
 			name: 'innerRect',
-			cornerRadius: 1/2 * option.height
+			cornerRadius: 1 / 2 * option.height
 		});
-		this.group.add( innerRect );
+		this.group.add(innerRect);
 
 		var outerRect = new Konva.Rect({
 			x: 0,
@@ -246,9 +246,9 @@ ProgressBar.prototype = {
 			strokeWidth: option.strokeWidth,
 			stroke: option.strokeColor,
 			name: 'outerRect',
-			cornerRadius: 1/2 * option.height
+			cornerRadius: 1 / 2 * option.height
 		});
-		this.group.add( outerRect );
+		this.group.add(outerRect);
 
 		var drawText = new Konva.Text({
 			text: '努力加载中：0%',
@@ -260,16 +260,16 @@ ProgressBar.prototype = {
 			align: 'center',
 			name: 'txt'
 		});
-		this.group.add( drawText );
+		this.group.add(drawText);
 	},
 
-	addToLayerOrGroup: function( layer ) {
-		layer.add( this.group );
+	addToLayerOrGroup: function (layer) {
+		layer.add(this.group);
 		this.drawLayer = layer;
 	},
 
-	changeValue: function( val ) {
-		if(val > 1) {
+	changeValue: function (val) {
+		if (val > 1) {
 			val /= 100;
 		}
 		var rect = this.group.findOne(".innerRect");
@@ -280,19 +280,18 @@ ProgressBar.prototype = {
 		});
 
 		var txt = this.group.findOne('.txt');
-		txt.text( '努力加载中：' + Number(val).toFixed(2) * 100 + '%');
+		txt.text('努力加载中：' + Number(val).toFixed(2) * 100 + '%');
 
 		this.drawLayer.batchDraw();
-	},	
-	pre: function() {
+	},
+	pre: function () {
 		var tween = new Konva.Tween({
 			node: this.group,
 			// scaleX: 1.2,
 			// scaleY: 1.2,
 			duration: .5,
 			opacity: .8,
-			onFinish: function() {
-			}
+			onFinish: function () {}
 		});
 		tween.play();
 	}
@@ -322,37 +321,37 @@ ProgressBar.prototype = {
 
 
 //=============>S  加载动画=============
-function LoadingAnimate( option ) {
+function LoadingAnimate(option) {
 	this.loadingGroup = null;
 	this.circleArr = [];
 
 	//初始化动画组件	
-	this.init( option );
+	this.init(option);
 }
 
 LoadingAnimate.prototype = {
 	constructor: LoadingAnimate,
-	init: function( option ) {
+	init: function (option) {
 		option.radius = option.radius || 30;
 		option.cenX = option.cenX;
 		option.cenY = option.cenY;
 		option.colors = option.colors || ["orange", "lightgreen", "lightblue"];
 		option.duration = option.duration || 1;
 		option.opactiy = option.opacity || .6;
-		option.scaleRange =  option.scaleRange || .2;
+		option.scaleRange = option.scaleRange || .2;
 
-		this.loadingGroup =	new Konva.Group({
+		this.loadingGroup = new Konva.Group({
 			x: option.cenX,
 			y: option.cenY
 		});
 
 		// var colors = ["orange", "lightgreen", "lightblue"];
-		for( var i = 0; i < 3; i++ ) {
+		for (var i = 0; i < 3; i++) {
 			var tempCircle = new Konva.Circle({
-				x: ( i-1 ) * option.radius * 2,
+				x: (i - 1) * option.radius * 2,
 				y: 0,
 				fill: colors[i],
-				radius: option.radius 
+				radius: option.radius
 			});
 			this.loadingGroup.add(tempCircle);
 			this.circleArr[i] = tempCircle;
@@ -360,11 +359,11 @@ LoadingAnimate.prototype = {
 
 	},
 	//把动画加载到层中
-	addToLayerOrGroup: function( layer ) {
-		layer.add( this.loadingGroup );
+	addToLayerOrGroup: function (layer) {
+		layer.add(this.loadingGroup);
 	},
 	//开始动画
-	playAnimate: function() {
+	playAnimate: function () {
 		var c1 = this.circleArr[0];
 		var c3 = this.circleArr[2];
 		var _this = this;
@@ -378,11 +377,11 @@ LoadingAnimate.prototype = {
 			opacity: .8,
 			scaleY: 1.2,
 			scaleX: 1.2,
-			onFinish : function() {
+			onFinish: function () {
 				c1.setZIndex(0);
 				c1.to({
 					duration: .8,
-					x: - 2 * c1.radius(),
+					x: -2 * c1.radius(),
 					y: 0,
 					opacity: .8,
 					scaleY: 1,
@@ -393,12 +392,12 @@ LoadingAnimate.prototype = {
 
 		c3.to({
 			duration: .8,
-			x: - 2 * c3.radius(),
+			x: -2 * c3.radius(),
 			y: 0,
 			opacity: .8,
 			scaleY: .8,
 			scaleX: .8,
-			onFinish : function() {
+			onFinish: function () {
 				c3.setZIndex(2);
 				c3.to({
 					duration: .8,
@@ -407,7 +406,7 @@ LoadingAnimate.prototype = {
 					opacity: .8,
 					scaleY: 1,
 					scaleX: 1,
-					onFinish: function() {
+					onFinish: function () {
 						_this.playAnimate();
 					}
 				});
@@ -437,7 +436,7 @@ LoadingAnimate.prototype = {
 //=============>S  饼状图=============
 function PieChart(option) {
 	var _this = this;
-	if( !option ) {
+	if (!option) {
 		throw new Error('请初始化饼状图的参数');
 	}
 	this.animageIndex = 0;
@@ -446,13 +445,13 @@ function PieChart(option) {
 	this.txtGroup = null;
 	this.animateDuration = .8;
 	this.outerCircle = null;
-	this.data  = null;
-	this.init(option);//初始化
+	this.data = null;
+	this.init(option); //初始化
 }
 
 PieChart.prototype = {
 	constructor: PieChart,
-	init: function(option) {
+	init: function (option) {
 		//饼状图数据：[{name:'',value:.2,color:'red'},...]
 		option.data = option.data || [];
 
@@ -462,10 +461,10 @@ PieChart.prototype = {
 		//动画执行的效果
 		option.easing = option.easing || Konva.Easings.Linear;
 		//x,y坐标
-		option.x = option.x || 0; 
-		option.y = option.y || 0; 
+		option.x = option.x || 0;
+		option.y = option.y || 0;
 		//饼状图半径
-		option.radius = option.radius === 0 ? 0 : option.radius || 100; 
+		option.radius = option.radius === 0 ? 0 : option.radius || 100;
 
 		option.txtAwayFromWedge = option.txtAwayFromWedge || 20;
 
@@ -485,14 +484,14 @@ PieChart.prototype = {
 		//默认的旋转角度
 		var tempAngel = -90;
 		//遍历生成所有扇形的对象
-		for(var i = 0; i < option.data.length; i++ ) {
+		for (var i = 0; i < option.data.length; i++) {
 			var wedgeAngel = option.data[i].value * 360;
 			var wedge = new Konva.Wedge({
 				x: 0,
 				y: 0,
 				radius: option.radius,
 				fill: option.data[i].color,
-				angle: 0,//后面有计算出角度放到数组中
+				angle: 0, //后面有计算出角度放到数组中
 				opacity: .6,
 				id: option.data[i].name,
 				name: wedgeAngel + '',
@@ -507,7 +506,7 @@ PieChart.prototype = {
 			//绘制 文字 
 			//扇形区域的中间
 			var rotationAngle = 0;
-			var totalAngle = tempAngel + 1/2 * wedgeAngel;
+			var totalAngle = tempAngel + 1 / 2 * wedgeAngel;
 
 			//下面这段代码是根据 角度设置文字旋转方向，已达到不覆盖图形的效果
 			//但是最终显示的效果，文本很不舒服，暂时放弃。后面有时间可以把
@@ -520,10 +519,10 @@ PieChart.prototype = {
 
 
 			//设置文字的x坐标
-			var txtX = Math.cos( totalAngle * Math.PI / 180) * (option.radius + option.txtAwayFromWedge);
+			var txtX = Math.cos(totalAngle * Math.PI / 180) * (option.radius + option.txtAwayFromWedge);
 			// 设置文字的y坐标
-			var txtY = Math.sin( totalAngle * Math.PI / 180) * (option.radius + option.txtAwayFromWedge);
-			var txtTitle = option.data[i].name +' ' + option.data[i].value * 100 + '%';
+			var txtY = Math.sin(totalAngle * Math.PI / 180) * (option.radius + option.txtAwayFromWedge);
+			var txtTitle = option.data[i].name + ' ' + option.data[i].value * 100 + '%';
 			var txt = new Konva.Text({
 				x: txtX,
 				y: txtY,
@@ -555,40 +554,40 @@ PieChart.prototype = {
 
 	},
 	//展示动画
-	playAnimate: function() {
+	playAnimate: function () {
 		_this = this;
-		if(this.animageIndex >= this.data.length) {
+		if (this.animageIndex >= this.data.length) {
 			_this.animageIndex = 0;
 			return;
 		}
 
 		//先初始化到0的状态，然后进行绘制。
-		if(this.animageIndex == 0) {
-			_this.group.getChildren().each(function(value, index){
+		if (this.animageIndex == 0) {
+			_this.group.getChildren().each(function (value, index) {
 				value.angle(0);
 			});
-			_this.txtGroup.getChildren().each(function(value,index){
+			_this.txtGroup.getChildren().each(function (value, index) {
 				value.hide();
 			});
 		}
-		this.playAnimateCallee= arguments.callee;//当前函数
+		this.playAnimateCallee = arguments.callee; //当前函数
 
 		//绘制一个 扇区的动画
 		var wedge = this.group.getChildren()[this.animageIndex];
-		var angel = Number(wedge.name());//扇区的度数
+		var angel = Number(wedge.name()); //扇区的度数
 		wedge.to({
 			angle: angel,
 			duration: angel * this.animateDuration / 360,
-			onFinish: function() {
+			onFinish: function () {
 				_this.txtGroup.getChildren()[_this.animageIndex].show();
 				_this.txtGroup.getParent().draw();
 				_this.animageIndex++;
-				_this.playAnimateCallee();//调用当前函数自身，形成动画队列。
+				_this.playAnimateCallee(); //调用当前函数自身，形成动画队列。
 			}
 		});
 	},
 	//把当前 饼状图添加到 层
-	addToLayer: function(layer) {
+	addToLayer: function (layer) {
 		layer.add(this.group);
 		layer.add(this.txtGroup);
 		layer.add(this.outerCircle);

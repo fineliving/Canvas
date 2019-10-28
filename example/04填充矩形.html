@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>02Canvas案例-填充矩形</title>
-	</head>
+
+<head>
+	<meta charset="UTF-8">
+	<title>02Canvas案例-填充矩形</title>
+</head>
+
 <body>
 
 	<div id="container">
@@ -13,7 +15,7 @@
 	</div>
 
 	<script>
-		(function(){
+		(function () {
 			var canvas = document.querySelector('#cavsElem');
 			var ctx = canvas.getContext('2d');
 
@@ -26,9 +28,9 @@
 			ctx.lineTo(300, 350);
 			ctx.lineTo(300, 550);
 			ctx.lineTo(100, 550);
-			ctx.closePath();	
-			ctx.fillStyle = "teal";//设置填充的颜色
-			ctx.fill();		
+			ctx.closePath();
+			ctx.fillStyle = "teal"; //设置填充的颜色
+			ctx.fill();
 
 			ctx.beginPath();
 			//使用reac()方法创建矩形
@@ -48,4 +50,5 @@
 		}());
 	</script>
 </body>
+
 </html>
