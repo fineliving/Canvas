@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>14Canvas案例-圆形渐变</title>
-	</head>
+
+<head>
+	<meta charset="UTF-8">
+	<title>14Canvas案例-圆形渐变</title>
+</head>
+
 <body>
 
 	<div id="container">
@@ -13,7 +15,7 @@
 	</div>
 
 	<script>
-		(function(){
+		(function () {
 			var canvas = document.querySelector('#cavsElem');
 			var ctx = canvas.getContext('2d');
 
@@ -25,8 +27,8 @@
 			gra.addColorStop(0, "#fff");
 			gra.addColorStop(.5, "blue");
 			gra.addColorStop(1, "rgba(255,0,0,.7)");
-			ctx.beginPath();	
-			ctx.arc(200, 200, 120, 0, 2*Math.PI);
+			ctx.beginPath();
+			ctx.arc(200, 200, 120, 0, 2 * Math.PI);
 			ctx.fillStyle = gra;
 
 			// ctx.globalAlpha = .9;
@@ -34,4 +36,5 @@
 		}());
 	</script>
 </body>
+
 </html>

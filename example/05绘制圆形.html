@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>05Canvas案例-绘制圆形</title>
-	</head>
+
+<head>
+	<meta charset="UTF-8">
+	<title>05Canvas案例-绘制圆形</title>
+</head>
+
 <body>
 
 	<div id="container">
@@ -13,7 +15,7 @@
 	</div>
 
 	<script>
-		(function(){
+		(function () {
 			var canvas = document.querySelector('#cavsElem');
 			var ctx = canvas.getContext('2d');
 			var i = 0;
@@ -22,11 +24,11 @@
 			canvas.style.border = "1px solid #000";
 
 			ctx.beginPath();
-			ctx.moveTo(200,200);
+			ctx.moveTo(200, 200);
 
-			ctx.arc(200, 200, 100, 0, .5*Math.PI);
+			ctx.arc(200, 200, 100, 0, .5 * Math.PI);
 			ctx.fill();
-			
+
 			// setInterval(function(){
 			// 	ctx.arc(200, 200, 100, 0, i*2*Math.PI);
 			// 	if(i >=1 ){
@@ -40,8 +42,9 @@
 			// 	// ctx.stroke();		
 			// 	ctx.fill();
 			// }, 200);
-			
+
 		}());
 	</script>
 </body>
+
 </html>

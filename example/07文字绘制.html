@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>07Canvas案例-文字绘制</title>
-	</head>
+
+<head>
+	<meta charset="UTF-8">
+	<title>07Canvas案例-文字绘制</title>
+</head>
+
 <body>
 
 	<div id="container">
@@ -13,7 +15,7 @@
 	</div>
 
 	<script>
-		(function(){
+		(function () {
 			var canvas = document.querySelector('#cavsElem');
 			var ctx = canvas.getContext('2d');
 
@@ -23,16 +25,16 @@
 
 			// =S 绘制坐标参照系
 			ctx.beginPath();
-			ctx.moveTo(0,301);
-			ctx.lineTo(900,301);
-			ctx.strokeStyle = "teal";			
-			ctx.stroke();		
-
-			ctx.moveTo(450,0);
-			ctx.lineTo(450,600);
+			ctx.moveTo(0, 301);
+			ctx.lineTo(900, 301);
+			ctx.strokeStyle = "teal";
 			ctx.stroke();
 
-			ctx.fillRect(445,295,10,10);
+			ctx.moveTo(450, 0);
+			ctx.lineTo(450, 600);
+			ctx.stroke();
+
+			ctx.fillRect(445, 295, 10, 10);
 			// =E 绘制坐标参照系
 
 			//绘制字体
@@ -72,4 +74,5 @@
 		}());
 	</script>
 </body>
+
 </html>

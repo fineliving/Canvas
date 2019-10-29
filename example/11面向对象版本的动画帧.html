@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>11Canvas案例-面向对象版本的动画帧</title>
-	</head>
+
+<head>
+	<meta charset="UTF-8">
+	<title>11Canvas案例-面向对象版本的动画帧</title>
+</head>
+
 <body>
 
 	<div id="container">
@@ -16,7 +18,7 @@
 	<button dir="0" id="btn_left">左</button>
 	<button dir="4" id="btn_right">右</button>
 	<script>
-		(function(){
+		(function () {
 			var canvas = document.querySelector('#cavsElem');
 			var ctx = canvas.getContext('2d');
 
@@ -35,32 +37,39 @@
 			// sprite.ctx = ctx;
 
 			//第二种，构造函数传参初始化。
-			var sprite = new Sprite(ctx,100,100,256,256,"down",10);
-			sprite.init();	
+			var sprite = new Sprite(ctx, 100, 100, 256, 256, "down", 10);
+			sprite.init();
 
 			//创建第二个精灵
-			var sprite2 = new Sprite(ctx,300,300,128,128,"left",20);
+			var sprite2 = new Sprite(ctx, 300, 300, 128, 128, "left", 20);
 			sprite2.init(ctx);
 
 			//给所有的按钮绑定一个点击事件
 			var btnDirs = document.querySelectorAll("button");
-			for(var i = 0; i < btnDirs.length; i++ ){
-				btnDirs[i].onclick = function(){
+			for (var i = 0; i < btnDirs.length; i++) {
+				btnDirs[i].onclick = function () {
 					sprite.turnToDir(this.getAttribute("id").split("_")[1]);
-					sprite2.turnToDir( this.getAttribute("id").split("_")[1]);
+					sprite2.turnToDir(this.getAttribute("id").split("_")[1]);
 				};
 			}
 		}());
 
 		//参数： x,y:精灵位置， h,w精灵宽高，  dir:精灵方向，  speed：速度
-		function Sprite(ctx,x,y,h,w,dir,speed){
+		function Sprite(ctx, x, y, h, w, dir, speed) {
 			//方向对应的 精灵图坐标
-			var dirmap = {"up" : 2, "down": 6, "left": 0, "right": 4},
-				_this = this;//保持当前作用域的this指针
+			var dirmap = {
+					"up": 2,
+					"down": 6,
+					"left": 0,
+					"right": 4
+				},
+				_this = this; //保持当前作用域的this指针
 
 			//初始化参数
 			this.ctx = ctx;
-			if(!ctx){ return; }			
+			if (!ctx) {
+				return;
+			}
 			this.posX = x || 10;
 			this.posY = y || 10;
 			this.h = h || 256;
@@ -70,36 +79,37 @@
 			this.imgSrc = "imgs/1.png";
 
 			//改变精灵的方向
-			this.turnToDir = function(dir) {
+			this.turnToDir = function (dir) {
 				this.direction = dir;
 			}
 
 			//在画布上绘制精灵图片
-			this.init = function() {
-				
+			this.init = function () {
+
 				//初始化精灵大图
 				var img = new Image();
 				img.src = _this.imgSrc;
 				//精灵图加载完成后，绘制单个精灵图
-				img.onload = function(e) {
-					var i = 0;//系列帧的索引
+				img.onload = function (e) {
+					var i = 0; //系列帧的索引
 
-					setInterval(function(){
+					setInterval(function () {
 						//清除之前的精灵图
 						_this.ctx.clearRect(_this.posX, _this.posY, _this.w, _this.h);
 
-						var dir = dirmap[_this.direction];//获取方向
+						var dir = dirmap[_this.direction]; //获取方向
 
 						//绘制图像
 						_this.ctx.drawImage(img,
-							 i*256, dir*256, 256,256, //截取的图片大小
-						 	 _this.posX, _this.posY, _this.w, _this.h);//绘制
-						i++;	//下一帧
-						i%=8;	//每个序列帧8幅图，循环绘制播放。
-					}, 1000/_this.speed);//setInterval
-				}//imgload
-			}//init
-		}//Sprite
+							i * 256, dir * 256, 256, 256, //截取的图片大小
+							_this.posX, _this.posY, _this.w, _this.h); //绘制
+						i++; //下一帧
+						i %= 8; //每个序列帧8幅图，循环绘制播放。
+					}, 1000 / _this.speed); //setInterval
+				} //imgload
+			} //init
+		} //Sprite
 	</script>
 </body>
+
 </html>

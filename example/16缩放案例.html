@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>16Canvas案例-缩放案例</title>
-	</head>
+
+<head>
+	<meta charset="UTF-8">
+	<title>16Canvas案例-缩放案例</title>
+</head>
+
 <body>
 
 	<div id="container">
@@ -13,7 +15,7 @@
 	</div>
 
 	<script>
-		(function(){
+		(function () {
 			var canvas = document.querySelector('#cavsElem');
 			var ctx = canvas.getContext('2d');
 
@@ -24,19 +26,18 @@
 			ctx.strokeRect(100, 100, 100, 100);
 			ctx.strokeText("1", 100, 100);
 
-			ctx.scale(2, 2);	//放到2倍
+			ctx.scale(2, 2); //放到2倍
 			ctx.strokeStyle = "green";
 			ctx.strokeRect(100, 100, 100, 100);
 			ctx.strokeText("2", 100, 100);
 
-			ctx.scale(.5, .5);	//缩放到1/2 回到原来状态
+			ctx.scale(.5, .5); //缩放到1/2 回到原来状态
 			ctx.strokeStyle = "blue";
 			ctx.strokeRect(150, 150, 100, 100);
 			ctx.strokeText("3", 150, 150);
-			ctx.stroke();		
+			ctx.stroke();
 		}());
-
-
 	</script>
 </body>
+
 </html>

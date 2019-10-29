@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>13Canvas案例-设置线性渐变</title>
-	</head>
+
+<head>
+	<meta charset="UTF-8">
+	<title>13Canvas案例-设置线性渐变</title>
+</head>
+
 <body>
 
 	<div id="container">
@@ -13,7 +15,7 @@
 	</div>
 
 	<script>
-		(function(){
+		(function () {
 			var canvas = document.querySelector('#cavsElem');
 			var ctx = canvas.getContext('2d');
 
@@ -26,14 +28,15 @@
 
 			grd.addColorStop(0, "teal");
 			grd.addColorStop(.5, "blue");
-			grd.addColorStop(.7, "#ccc");//添加渐变的节点。
+			grd.addColorStop(.7, "#ccc"); //添加渐变的节点。
 			grd.addColorStop(1, "#999");
 
-			ctx.fillStyle =grd;//关键点，把渐变设置到 填充的样式
+			ctx.fillStyle = grd; //关键点，把渐变设置到 填充的样式
 			ctx.font = "200px '微软雅黑'";
 			ctx.fillText("传智播客", 200, 200);
-			ctx.fillRect(200,200, 100, 100);
+			ctx.fillRect(200, 200, 100, 100);
 		}());
 	</script>
 </body>
+
 </html>
