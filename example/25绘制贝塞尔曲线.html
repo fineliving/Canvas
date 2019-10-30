@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>25Canvas案例-贝塞尔曲线案例</title>
-	</head>
+
+<head>
+	<meta charset="UTF-8">
+	<title>25Canvas案例-贝塞尔曲线案例</title>
+</head>
+
 <body>
 
 	<div id="container">
@@ -13,7 +15,7 @@
 	</div>
 
 	<script>
-		(function(){
+		(function () {
 			var canvas = document.querySelector('#cavsElem');
 			var ctx = canvas.getContext('2d');
 
@@ -22,17 +24,18 @@
 			canvas.style.border = "1px solid #000";
 
 			ctx.beginPath();
-			ctx.moveTo(30,30);
+			ctx.moveTo(30, 30);
 			//绘制二次贝塞尔曲线
 			ctx.quadraticCurveTo(200, 200, 300, 30);
-			ctx.stroke();		
+			ctx.stroke();
 
 			//绘制复杂的贝塞尔曲线
 			ctx.beginPath();
-			ctx.moveTo(400,400);
+			ctx.moveTo(400, 400);
 			ctx.bezierCurveTo(500, 200, 600, 600, 700, 300);
 			ctx.stroke();
 		}());
 	</script>
 </body>
+
 </html>

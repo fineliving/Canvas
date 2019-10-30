@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>22Canvas案例-线的样式</title>
-	</head>
+
+<head>
+	<meta charset="UTF-8">
+	<title>22Canvas案例-线的样式</title>
+</head>
+
 <body>
 
 	<div id="container">
@@ -13,7 +15,7 @@
 	</div>
 
 	<script>
-		(function(){
+		(function () {
 			var canvas = document.querySelector('#cavsElem');
 			var ctx = canvas.getContext('2d');
 
@@ -33,7 +35,7 @@
 			ctx.lineCap = "butt";
 			ctx.lineTo(400, 140);
 			ctx.stroke();
-			
+
 			ctx.beginPath();
 			ctx.moveTo(40, 240);
 			ctx.lineCap = "square";
@@ -42,7 +44,7 @@
 			ctx.stroke();
 
 			ctx.beginPath();
-			ctx.moveTo(40,0);
+			ctx.moveTo(40, 0);
 			ctx.lineTo(40, 600);
 			ctx.strokeStyle = "red";
 			ctx.lineWidth = .5;
@@ -50,4 +52,5 @@
 		}());
 	</script>
 </body>
+
 </html>

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>22Canvas案例-画布之间的相互绘制</title>
-	</head>
+
+<head>
+	<meta charset="UTF-8">
+	<title>22Canvas案例-画布之间的相互绘制</title>
+</head>
+
 <body>
 
 	<div id="container">
@@ -16,7 +18,7 @@
 	</div>
 
 	<script>
-		(function(){
+		(function () {
 			var canvas1 = document.querySelector('#cavsElem1');
 			var canvas2 = document.querySelector('#cavsElem2');
 			var ctx1 = canvas1.getContext('2d');
@@ -25,8 +27,8 @@
 			canvas1.width = 300;
 			canvas1.height = 300;
 			canvas1.style.border = "1px solid #000";
-  
-		    canvas2.width = 300;
+
+			canvas2.width = 300;
 			canvas2.height = 300;
 			canvas2.style.border = "1px solid #000";
 
@@ -41,4 +43,5 @@
 		}());
 	</script>
 </body>
+
 </html>
