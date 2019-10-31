@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>31Konva案例-五角星案例</title>
@@ -13,6 +14,7 @@
 	</style>
 	<script src="bower_components/konva/konva.js"></script>
 </head>
+
 <body>
 	<div id="container"></div>
 	<script type="text/javascript">
@@ -24,13 +26,13 @@
 
 		var layer = new Konva.Layer();
 		stage.add(layer);
-		
+
 		var star = new Konva.Star({
-			x: 300,	//五角星中心点
+			x: 300, //五角星中心点
 			y: 300,
-			numPoints: 5,	//角数
-			innerRadius: 40,	//内圆半径
-			outerRadius: 70,	//外圆半径
+			numPoints: 5, //角数
+			innerRadius: 40, //内圆半径
+			outerRadius: 70, //外圆半径
 			fill: "teal",
 			stroke: "red",
 			strokeWidth: 4,
@@ -39,11 +41,11 @@
 		layer.add(star);
 
 		var ring = new Konva.Ring({
-			x: 500,	//五角星中心点
+			x: 500, //五角星中心点
 			y: 200,
-			numPoints: 5,	//角数
-			innerRadius: 40,	//内圆半径
-			outerRadius: 70,	//外圆半径
+			numPoints: 5, //角数
+			innerRadius: 40, //内圆半径
+			outerRadius: 70, //外圆半径
 			fill: "teal",
 			stroke: "red",
 			strokeWidth: 4
@@ -53,12 +55,13 @@
 
 		layer.draw();
 		var angle = 0;
-		setInterval(function(){
-			angle+=10;
-			angle = angle %360;
+		setInterval(function () {
+			angle += 10;
+			angle = angle % 360;
 			star.rotation(angle);
 			layer.draw();
 		}, 100);
 	</script>
 </body>
+
 </html>

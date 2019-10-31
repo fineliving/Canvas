@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -15,6 +16,7 @@
 	<script src="bower_components/konva/konva.min.js"></script>
 	<script src="js/KonvaExtend.js" charset="utf-8"></script>
 </head>
+
 <body>
 	<div id="container">
 	</div>
@@ -26,42 +28,53 @@
 			height: window.innerHeight
 		});
 
-	
+
 		var layer = new Konva.Layer();
 		stage.add(layer);
-	
+
 		var cenX = stage.width() / 2;
 		var cenY = stage.height() / 2;
 
-		var data = [{ 
-				name: '阿里', value: .2, color: 'lightgreen'
-			},{
-				name: '百度', value: .4, color: 'red'
-			},{
-				name: '新浪', value: .1, color: 'blue'
-			},{
-				name: '盛大', value: .1, color: '#8E8E38'
-			},{
-				name: '360', value: .2, color: 'purple'
-			}];
+		var data = [{
+			name: '阿里',
+			value: .2,
+			color: 'lightgreen'
+		}, {
+			name: '百度',
+			value: .4,
+			color: 'red'
+		}, {
+			name: '新浪',
+			value: .1,
+			color: 'blue'
+		}, {
+			name: '盛大',
+			value: .1,
+			color: '#8E8E38'
+		}, {
+			name: '360',
+			value: .2,
+			color: 'purple'
+		}];
 
 		var his = new Histogram({
 			data: data,
-			x: 1/8 * stage.width(),
-			y: 3/4 * stage.height(),
+			x: 1 / 8 * stage.width(),
+			y: 3 / 4 * stage.height(),
 			blWidth: 2,
 			blColor: 'lightblue',
-			width: 3/4 * stage.width(),
-			height: 1/3 * stage.height(),
+			width: 3 / 4 * stage.width(),
+			height: 1 / 3 * stage.height(),
 			fontSize: 14
 		});
 		his.addToGroupOrLayer(layer);
 		layer.draw();
 		his.playAnimate();
 
-		layer.on('click',function(){
+		layer.on('click', function () {
 			his.playAnimate();
 		});
 	</script>
 </body>
+
 </html>

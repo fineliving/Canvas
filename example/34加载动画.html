@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -14,6 +15,7 @@
 	</style>
 	<script src="bower_components/konva/konva.min.js"></script>
 </head>
+
 <body>
 	<div id="container">
 	</div>
@@ -22,7 +24,7 @@
 		//创建舞台
 		var stage = new Konva.Stage({
 			container: 'container',
-			width: window.innerWidth,//全屏
+			width: window.innerWidth, //全屏
 			height: window.innerHeight
 		});
 
@@ -39,16 +41,16 @@
 
 		var colors = ["orange", "lightgreen", "lightblue"];
 		var circles = [];
-		for(var i=0; i<3; i++){
+		for (var i = 0; i < 3; i++) {
 			circles.push(new Konva.Circle({
-				x: cenX + ( i-1 ) * circleRadius * 2,
+				x: cenX + (i - 1) * circleRadius * 2,
 				y: cenY,
 				fill: colors[i],
 				radius: circleRadius
 			}));
 		}
 
-		circles.forEach(function(val){
+		circles.forEach(function (val) {
 			layer.add(val);
 		});
 		layer.draw();
@@ -58,7 +60,7 @@
 		var isStop = false;
 
 		function showLoading() {
-			if(isStop) {
+			if (isStop) {
 				return;
 			}
 			circles[0].setZIndex(2);
@@ -70,7 +72,7 @@
 				opacity: .6,
 				scaleY: 1.2,
 				scaleX: 1.2,
-				onFinish : function(){
+				onFinish: function () {
 					circles[0].setZIndex(0);
 					circles[0].to({
 						duration: .8,
@@ -89,7 +91,7 @@
 				opacity: .6,
 				scaleY: .8,
 				scaleX: .8,
-				onFinish : function(){
+				onFinish: function () {
 					circles[2].setZIndex(2);
 					circles[2].to({
 						duration: .8,
@@ -104,7 +106,7 @@
 			});
 		}
 
-		circles[0].on("click dbclick tap tourchend",function(){
+		circles[0].on("click dbclick tap tourchend", function () {
 			isStop = true;
 			// stage.remove(layer);
 			// layer.getChildren().forEach(function(val){
@@ -112,11 +114,11 @@
 			// });
 			layer.destroy();
 		});
-		
+
 
 		//=====================面向对象版本的加载动画==============================
 
-	
+
 
 
 		// var animate = new Konva.Animation(function(){
@@ -124,37 +126,37 @@
 		// }, layer);
 
 
-		function LoadingAnimate( option ) {
+		function LoadingAnimate(option) {
 			this.loadingGroup = null;
 			this.circleArr = [];
-		
+
 			//初始化动画组件	
-			this.init( option );
+			this.init(option);
 		}
 
 		LoadingAnimate.prototype = {
 			constructor: LoadingAnimate,
-			init: function( option ) {
+			init: function (option) {
 				option.radius = option.radius || 30;
 				option.cenX = option.cenX;
 				option.cenY = option.cenY;
 				option.colors = option.colors || ["orange", "lightgreen", "lightblue"];
 				option.duration = option.duration || 1;
 				option.opactiy = option.opacity || .6;
-				option.scaleRange =  option.scaleRange || .2;
+				option.scaleRange = option.scaleRange || .2;
 
-				this.loadingGroup =	new Konva.Group({
+				this.loadingGroup = new Konva.Group({
 					x: option.cenX,
 					y: option.cenY
 				});
 
 				// var colors = ["orange", "lightgreen", "lightblue"];
-				for( var i = 0; i < 3; i++ ) {
+				for (var i = 0; i < 3; i++) {
 					var tempCircle = new Konva.Circle({
-						x: ( i-1 ) * option.radius * 2,
+						x: (i - 1) * option.radius * 2,
 						y: 0,
 						fill: colors[i],
-						radius: option.radius 
+						radius: option.radius
 					});
 					this.loadingGroup.add(tempCircle);
 					this.circleArr[i] = tempCircle;
@@ -162,11 +164,11 @@
 
 			},
 			//把动画加载到层中
-			addToLayerOrGroup: function( layer ) {
-				layer.add( this.loadingGroup );
+			addToLayerOrGroup: function (layer) {
+				layer.add(this.loadingGroup);
 			},
 			//开始动画
-			playAnimate: function() {
+			playAnimate: function () {
 				var c1 = this.circleArr[0];
 				var c3 = this.circleArr[2];
 				var _this = this;
@@ -180,11 +182,11 @@
 					opacity: .8,
 					scaleY: 1.2,
 					scaleX: 1.2,
-					onFinish : function() {
+					onFinish: function () {
 						c1.setZIndex(0);
 						c1.to({
 							duration: .8,
-							x: - 2 * c1.radius(),
+							x: -2 * c1.radius(),
 							y: 0,
 							opacity: .8,
 							scaleY: 1,
@@ -195,12 +197,12 @@
 
 				c3.to({
 					duration: .8,
-					x: - 2 * c3.radius(),
+					x: -2 * c3.radius(),
 					y: 0,
 					opacity: .8,
 					scaleY: .8,
 					scaleX: .8,
-					onFinish : function() {
+					onFinish: function () {
 						c3.setZIndex(2);
 						c3.to({
 							duration: .8,
@@ -209,7 +211,7 @@
 							opacity: .8,
 							scaleY: 1,
 							scaleX: 1,
-							onFinish: function() {
+							onFinish: function () {
 								_this.playAnimate();
 							}
 						});
@@ -232,7 +234,7 @@
 
 		loadingDemo2.addToLayerOrGroup(layer);
 		loadingDemo2.playAnimate();
-
 	</script>
 </body>
+
 </html>
