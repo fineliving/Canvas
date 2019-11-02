@@ -29,8 +29,11 @@ var progressLine = new Konva.Rect({
 	cornerRadius: 5,
 	shadowBlur: 4,
 	shadowColor: '#f0f0f0',
-	shadowOffset: {x : 0, y : 0},
-    shadowOpacity: 0.5
+	shadowOffset: {
+		x: 0,
+		y: 0
+	},
+	shadowOpacity: 0.5
 });
 layer.add(progressLine);
 
@@ -85,32 +88,32 @@ var text = new Konva.Text({
 // 
 layer.draw();
 
-setInterval(function(){
-	if(progressValueRect.width() < progressLine.width() ) {
+setInterval(function () {
+	if (progressValueRect.width() < progressLine.width()) {
 		progressValueRect.width(progressValueRect.width() + 1);
 		layer.batchDraw();
 	}
-},20);
+}, 20);
 
-var animate = new Konva.Animation(function(frame){
-	var time = frame.time,		//动画执行的时间
-        timeDiff = frame.timeDiff,	//上次动画执行到现在的时间
-        frameRate = frame.frameRate;	//每秒中执行的帧数
- //    rect.setX(rect.x()+50/frameRate);
- //    if(rect.x() > stage.width()){
- //    	this.stop();
- //    }
+var animate = new Konva.Animation(function (frame) {
+	var time = frame.time, //动画执行的时间
+		timeDiff = frame.timeDiff, //上次动画执行到现在的时间
+		frameRate = frame.frameRate; //每秒中执行的帧数
+	//    rect.setX(rect.x()+50/frameRate);
+	//    if(rect.x() > stage.width()){
+	//    	this.stop();
+	//    }
 
-    // rect.rotation((rect.rotation() + 2 ) % 360);
-    // wjx.rotation((wjx.rotation() + 2 ) % 360);
-    // text.scaleX(text.scaleX() +  1 / frameRate );
-    // text.scaleY(text.scaleY() +  1 / frameRate);
-    // text.opacity(text.opacity() - .3 / frameRate);
-    // if(text.opacity() <= 0){
-    // 	this.stop();
-    	
-    // 	text.opacity(0);
-    // }
+	// rect.rotation((rect.rotation() + 2 ) % 360);
+	// wjx.rotation((wjx.rotation() + 2 ) % 360);
+	// text.scaleX(text.scaleX() +  1 / frameRate );
+	// text.scaleY(text.scaleY() +  1 / frameRate);
+	// text.opacity(text.opacity() - .3 / frameRate);
+	// if(text.opacity() <= 0){
+	// 	this.stop();
+
+	// 	text.opacity(0);
+	// }
 
 }, layer);
 
