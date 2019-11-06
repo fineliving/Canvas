@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>19Canvas案例-19矩形旋转</title>
+	<title>画布输出dataurl</title>
 </head>
 
 <body>
@@ -14,6 +14,8 @@
 		</canvas>
 	</div>
 
+	<img src="" id="img-demo" alt="">
+
 	<script>
 		(function () {
 			var canvas = document.querySelector('#cavsElem');
@@ -23,20 +25,11 @@
 			canvas.height = 600;
 			canvas.style.border = "1px solid #000";
 
-			ctx.fillStyle = "rgba(255,0,0,.7)";
-			ctx.fillRect(100, 100, 200, 100);
+			ctx.strokeRect(20, 20, 100, 200);
+			ctx.fillRect(300, 100, 200, 10);
 
-			var angle = 0;
-			setInterval(function () {
-				ctx.save();
-				angle += 10;
-				canvas.width = 900;
-				ctx.translate(200, 150);
-				ctx.rotate(angle * Math.PI / 180);
-				ctx.fillRect(-100, -50, 200, 100);
-				ctx.restore();
-
-			}, 400);
+			var img = document.querySelector("#img-demo");
+			img.src = canvas.toDataURL("image/png");
 		}());
 	</script>
 </body>
