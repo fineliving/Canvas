@@ -1323,7 +1323,7 @@ groupCircle.find('Circle').each(function( circle, index ){
 });
 ```
 
-## 5.6 Konva 进阶案例
+## 5.6 Konva面向对象封装
 
 ***1. 饼状图案例***
 
@@ -1400,3 +1400,4 @@ function draw() {
 
 }
 ```
+
